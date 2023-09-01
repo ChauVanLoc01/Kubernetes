@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "private_network", ip: "172.16.10.100"
+  config.vm.hostname = "master.xtl"
+
+  config.vm.provider "virtualbox" do |vb|
+     vb.name = "master.xtl"
+     vb.cpus = 2
+     vb.memory = "2048"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    cat >>/etc/hosts<<EOF
+    172.16.10.100 master.xtl
+    172.16.10.101 worker1.xtl
+    172.16.10.102 worker2.xtl
+    EOF
+
+    echo "vanloc" | passwd --stdin root
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+    systemctl reload sshd
+  SHELL
+end
