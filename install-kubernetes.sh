@@ -89,3 +89,14 @@ sudo kubeadm init --apiserver-advertise-address=your_ip_master --pod-network-cid
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml -O
 kubectl create -f custom-resources.yaml
+
+
+
+
+#######  SAU ĐÓ NẾU CÓ SAI SÓT GÌ THÌ CÁCH NHANH NHẤT LÀ RESET LẠI TOÀN BỘ BẰNG CÂU LỆNH
+
+## Reset kubeadm
+kubeadm reset
+
+## restart kubelet
+systemctl restart kubelet
