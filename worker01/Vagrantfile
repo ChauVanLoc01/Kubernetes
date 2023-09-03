@@ -8,12 +8,4 @@ Vagrant.configure("2") do |config|
      vb.cpus = 2
      vb.memory = "2048"
   end
-
-  config.vm.provision "shell", inline: <<-SHELL
-    cat >>/etc/hosts<<EOF
-    172.16.10.100 master.xtl
-    172.16.10.101 worker1.xtl
-    172.16.10.102 worker2.xtl
-    EOF
-  SHELL
 end

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firstpod
+  namespace: ns-test
+  labels:
+    app: firstpod
+spec:
+  containers:
+  - name: firstpod
+    image: ngix:latest
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort:  80

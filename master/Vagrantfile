@@ -15,9 +15,5 @@ Vagrant.configure("2") do |config|
     172.16.10.101 worker1.xtl
     172.16.10.102 worker2.xtl
     EOF
-
-    echo "vanloc" | passwd --stdin root
-    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-    systemctl reload sshd
   SHELL
 end
