@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: MyService
+  namespace: default
+spec:
+  selector:
+    app: MyService
+  type: ClusterIP
+  ports:
+  - name: nginx1
+    protocol: TCP
+    port: 80
+    targetPort: 80

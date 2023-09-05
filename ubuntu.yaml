@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: divine
+  name: hello-world
+  namespace: default
   labels:
-    app: divine
+    app: hello-world
 spec:
   containers:
-  - name: divine
-    image: chauvanloc/divine-fe
+  - name: hello-world
+    image: hello-world
     resources:
       limits:
         cpu: 200m
@@ -16,5 +17,5 @@ spec:
         cpu: 100m
         memory: 200Mi
     ports:
-    - containerPort:  4000
+    - containerPort:  80
       name:  http
