@@ -4,7 +4,7 @@ metadata:
   name: mynodeport
 spec:
   selector:
-    app: mynginx
+    app: myapp
   type: NodePort
   ports:
   - name: nginx1

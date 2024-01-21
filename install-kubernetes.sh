@@ -114,3 +114,29 @@ $ echo "source <(kubeadm completion bash)" >> ~/.bashrc
 
 # Reload bash without logging out
 $ source ~/.bashrc 
+
+kubeadm join 172.16.10.100:6443 --token 7iz72j.barnedx3f7231giv \
+        --discovery-token-ca-cert-hash sha256:d5b3b1db715e6171ee7e3583e0a0b3896d5eb50abf79d37bea76edab5c607596
+
+
+
+// Tren server
+
+kubeadm join 10.148.0.4:6443 --token h58jcn.vfp9db75jwldciot \
+        --discovery-token-ca-cert-hash sha256:a867e14ec0e7e2af29547c357bcf4d8390342c1ebf0bdaf188405873436d3519
+
+
+kubeadm join 10.148.0.4:6443 --token ekvjdw.uvq8o923fqrdgg2x \
+        --discovery-token-ca-cert-hash sha256:3d52bd357e0eb2e973e552cf83afcf2f8c9e12edd3e3f68011effaf323cbdf1c
+
+sudo ufw allow 179/tcp
+sudo ufw allow 4789/tcp
+sudo ufw allow 5473/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 6443/tcp
+sudo ufw allow 2379/tcp
+sudo ufw allow 4149/tcp
+sudo ufw allow 10250/tcp
+sudo ufw allow 10255/tcp
+sudo ufw allow 10256/tcp
+sudo ufw allow 9099/tcp
