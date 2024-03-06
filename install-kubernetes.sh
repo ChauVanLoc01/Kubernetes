@@ -84,9 +84,23 @@ sudo kubeadm init --apiserver-advertise-address=172.16.10.100 --pod-network-cidr
 #phải cài calico network thì mới xài được
 
 #install calico network
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml -O
 kubectl create -f custom-resources.yaml
+
+// change internal ip
+nano /var/lib/kubelet/kubeadm-flags.env
+// Thêm --node-ip= địa chỉ ip của bạn
+// Sau đó chạy lệnh
+systemctl daemon-reload
+systemctl restart kubelet
+
+// Lỗi kalico
+kubectl delete pods --all -n calico-system --force
 
 #Lỗi phổ biến
 https://k21academy.com/docker-kubernetes/the-connection-to-the-server-localhost8080-was-refused/
@@ -129,6 +143,7 @@ kubeadm join 10.148.0.4:6443 --token h58jcn.vfp9db75jwldciot \
 kubeadm join 10.148.0.4:6443 --token ekvjdw.uvq8o923fqrdgg2x \
         --discovery-token-ca-cert-hash sha256:3d52bd357e0eb2e973e552cf83afcf2f8c9e12edd3e3f68011effaf323cbdf1c
 
+sudo ufw enable
 sudo ufw allow 179/tcp
 sudo ufw allow 4789/tcp
 sudo ufw allow 5473/tcp
@@ -140,3 +155,12 @@ sudo ufw allow 10250/tcp
 sudo ufw allow 10255/tcp
 sudo ufw allow 10256/tcp
 sudo ufw allow 9099/tcp
+
+kubectl label node worker1  node-role.kubernetes.io/worker=worker
+
+
+
+kubeadm join 172.16.10.100:6443 --token ydg4id.z9pu2s4h82kmmwib \
+        --discovery-token-ca-cert-hash sha256:edd520836ec4bd3be25bb3ca7cf0e74e2b52168b7c5da8394e297a2108b40e1c
+
+10.110.216.10

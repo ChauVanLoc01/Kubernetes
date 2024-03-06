@@ -3,18 +3,18 @@ kind: Pod
 metadata:
   name: mynginx
   labels:
-    app: myapp
+    app: mynginx
 spec:
   containers:
-  - name: nginx
-    image: nginx
-    resources:
-      limits:
-        cpu: 200m
-        memory: 500Mi
-      requests:
-        cpu: 100m
-        memory: 200Mi
-    ports:
-    - containerPort:  80
-      name:  http
+    - name: nginx
+      image: nginx
+      resources:
+        limits:
+          cpu: 200m
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+      ports:
+        - containerPort: 80
+          name: http

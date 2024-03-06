@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: myapp
+    app: mynginx
   type: ClusterIP
   ports:
   - name: nginx
