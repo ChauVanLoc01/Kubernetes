@@ -94,7 +94,7 @@ kubectl create -f custom-resources.yaml
 
 // change internal ip
 nano /var/lib/kubelet/kubeadm-flags.env
-// Thêm --node-ip= địa chỉ ip của bạn
+// Thêm --node-ip=172.16.10.100  địa chỉ ip của bạn
 // Sau đó chạy lệnh
 systemctl daemon-reload
 systemctl restart kubelet
@@ -160,7 +160,14 @@ kubectl label node worker1  node-role.kubernetes.io/worker=worker
 
 
 
-kubeadm join 172.16.10.100:6443 --token ydg4id.z9pu2s4h82kmmwib \
-        --discovery-token-ca-cert-hash sha256:edd520836ec4bd3be25bb3ca7cf0e74e2b52168b7c5da8394e297a2108b40e1c
+kubeadm join 172.16.10.100:6443 --token x088dh.lkajkvoq2o0e1kjz \
+        --discovery-token-ca-cert-hash sha256:2895f3d3c685ae3cb0b31dd82ef215b9f77b22aebdcf1ccdc4303bc01af55b39
 
 10.110.216.10
+
+// Xóa vagrant nếu đã có virtial machine
+VBoxManage list vms
+VBoxManage unregistervm 8ba467b7-da96-4f68-9bf8-671dd6f0d007 --delete
+
+// Nêu không xóa được vì virtual machine còn đang chạy thì
+VBoxManage controlvm VMNAME poweroff

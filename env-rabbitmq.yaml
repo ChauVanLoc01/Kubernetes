@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: env-rabbitmq
+type: Opaque
+data:
+  RABBITMQ_URI: "amqp://vanloc:123123@localhost:5700"
