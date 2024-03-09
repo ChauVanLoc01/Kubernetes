@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /nginx
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
+      - path: /user
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: user-service
+            port:
+              number: 3001
+      - path: /rabbitmq
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: rabbitmq-service
+            port:
+              number: 15672
+      - path: /adminer
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: adminer-service
+            port:
+              number: 8080

@@ -79,6 +79,9 @@ sudo apt-mark hold kubelet kubeadm kubectl
 #Khởi tạo control plane
 sudo kubeadm init --apiserver-advertise-address=172.16.10.100 --pod-network-cidr=192.168.0.0/16 # --ignore-preflight-errors=all --v=5
 
+// Lấy lại token
+kubeadm token create --print-join-command
+
 #Sau đó thì thêm các worker node vào bằng câu lệnh được sinh ra từ việc khởi tạo control plane
 
 #phải cài calico network thì mới xài được

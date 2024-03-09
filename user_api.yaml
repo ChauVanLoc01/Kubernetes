@@ -1,25 +1,25 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: user_api
+  name: user-api
   labels:
-    app: user_api
+    app: user-api
 spec:
   containers:
-    - name: user_api
+    - name: user-api
       image: chauvanloc/user-api
       ports:
         - containerPort:  3001
           name:  http
       envFrom:
-        - secretRef:
-          name: env
-        - secretRef:
-          name: env-rabbitmq
-        - secretRef:
-          name: env-bullqueue
-        - secretRef:
-          name: env-elasticsearch
-        - secretRef:
-          name: env-user
+        - configMapRef:
+            name: env
+        - configMapRef:
+            name: env-elasticsearch
+        - configMapRef:
+            name: env-bullqueue
+        - configMapRef:
+            name: env-rabbitmq
+        - configMapRef:
+            name: env-user
   restartPolicy: Always

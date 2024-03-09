@@ -1,19 +1,12 @@
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
   name: env-bullqueue
-type: Opaque
 data:
   BULL_QUEUE_HOST: "localhost"
-
   BULL_QUEUE_PORT: "6400"
-
   MAIL_HOST: "smtp.gmail.com"
-
   MY_MAIL: "locchau.220401@gmail.com"
-
   MAIL_PASSWORD: "kcsaltzzvdupltxh"
-
   MAIL_TRANSPORT: "smtp://locchau.220401@gmail.com:kcsaltzzvdupltxh@smtp.gmail.com"
-
   BULL_QUEUE_TTL: "300000"
