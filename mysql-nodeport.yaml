@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       port: 31
       targetPort: 3306
-      nodePort: 3200
+      nodePort: 32000

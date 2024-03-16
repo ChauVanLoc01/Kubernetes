@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-api
+  namespace: default
+  labels:
+    app: product-api
+spec:
+  selector:
+    matchLabels:
+      app: product-api
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: product-api
+    spec:
+      containers:
+        - name: product-api
+          image: chauvanloc/product-api
+          ports:
+            - containerPort: 3002
+              name: http
+          envFrom:
+            - configMapRef:
+                name: env
+            - configMapRef:
+                name: env-elasticsearch
+            - configMapRef:
+                name: env-bullqueue
+            - configMapRef:
+                name: env-rabbitmq
+            - configMapRef:
+                name: env-product
+      restartPolicy: Always

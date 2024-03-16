@@ -7,7 +7,7 @@ spec:
     app: user-api
   type: ClusterIP
   ports:
-  - name: user-service
-    protocol: TCP
-    port: 31000
-    targetPort: 31000
+    - name: user-service
+      protocol: TCP
+      port: 3001
+      targetPort: 3001

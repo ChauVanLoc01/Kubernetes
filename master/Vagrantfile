@@ -5,8 +5,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
      vb.name = "master.xtl"
-     vb.cpus = 2
-     vb.memory = "2048"
+     vb.cpus = 3
+     vb.memory = "4096"
   end
 
   config.vm.provision "shell", inline: <<-SHELL
@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
     172.16.10.100 master.xtl
     172.16.10.101 worker1.xtl
     172.16.10.102 worker2.xtl
+    172.16.10.103 worker1.xtl
+    172.16.10.104 worker2.xtl
     EOF
   SHELL
   

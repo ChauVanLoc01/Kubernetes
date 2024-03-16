@@ -174,3 +174,6 @@ VBoxManage unregistervm 8ba467b7-da96-4f68-9bf8-671dd6f0d007 --delete
 
 // Nêu không xóa được vì virtual machine còn đang chạy thì
 VBoxManage controlvm VMNAME poweroff
+
+// force delete
+for p in $(kubectl get pods | grep Terminating | awk '{print $1}'); do kubectl delete pod $p --grace-period=0 --force;done

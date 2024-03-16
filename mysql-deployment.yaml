@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: default
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          env:
+            - name: 'MYSQL_USER'
+              value: 'vanloc'
+            - name: 'MYSQL_PASSWORD'
+              value: '123123'
+            - name: 'MYSQL_DATABASE'
+              value: 'microservice'
+            - name: 'MYSQL_ROOT_PASSWORD'
+              value: '123123'
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-volume
+      volumes:
+        - name: mysql-volume
+          hostPath:
+            path: /microservice-data/mysql
+      restartPolicy: Always

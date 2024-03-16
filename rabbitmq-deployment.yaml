@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: default
+  labels:
+    app: rabbitmq
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq
+          env:
+            - name: 'RABBITMQ_DEFAULT_USER'
+              value: 'vanloc'
+            - name: 'RABBITMQ_DEFAULT_PASS'
+              value: '123123'
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          volumeMounts:
+            - name: rabbitmq-volume
+              mountPath: /data
+      volumes:
+        - name: rabbitmq-volume
+          hostPath:
+            path: /microservice-data/rabbitmq
+      restartPolicy: Always

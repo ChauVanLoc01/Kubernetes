@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: env-rabbitmq
 data:
-  RABBITMQ_URI: "amqp://vanloc:123123@localhost:5700"
+  RABBITMQ_URI: 'amqp://vanloc:123123@rabbitmq-service:5672'

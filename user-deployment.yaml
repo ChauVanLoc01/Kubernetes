@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-api
+  namespace: default
+  labels:
+    app: user-api
+spec:
+  selector:
+    matchLabels:
+      app: user-api
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: user-api
+    spec:
+      containers:
+        - name: user-api
+          image: chauvanloc/user-api
+          ports:
+            - containerPort: 3001
+              name: http
+          envFrom:
+            - configMapRef:
+                name: env
+            - configMapRef:
+                name: env-elasticsearch
+            - configMapRef:
+                name: env-bullqueue
+            - configMapRef:
+                name: env-rabbitmq
+            - configMapRef:
+                name: env-user
+      restartPolicy: Always

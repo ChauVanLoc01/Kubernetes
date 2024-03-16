@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-product
+data:
+  NODE_ENV: "product"
+  SERVICE_APP_PORT: "3002"
+  QUEUE_NAME: "product_queue"

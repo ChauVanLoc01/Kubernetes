@@ -9,14 +9,14 @@ spec:
     - name: mysql
       image: mysql
       env:
-        - name: "MYSQL_USER"
-          value: "vanloc"
-        - name: "MYSQL_PASSWORD"
-          value: "123123"
-        - name: "MYSQL_DATABASE"
-          value: "microservice"
-        - name: "MYSQL_ROOT_PASSWORD"
-          value: "root"
+        - name: 'MYSQL_USER'
+          value: 'vanloc'
+        - name: 'MYSQL_PASSWORD'
+          value: '123123'
+        - name: 'MYSQL_DATABASE'
+          value: 'microservice'
+        - name: 'MYSQL_ROOT_PASSWORD'
+          value: '123123'
       ports:
         - containerPort: 3306
           name: http
